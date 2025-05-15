@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detector de Emociones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: #f2f2f2;
+    }
+    textarea {
+      width: 80%;
+      height: 100px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .resultado {
+      margin-top: 2rem;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 Detector de Emociones 🧠</h1>
+  <p>Escribe una frase:</p>
+  <textarea id="frase" placeholder="Ejemplo: Hoy estoy muy feliz y emocionado"></textarea><br>
+  <button onclick="detectarEmocion()">Detectar emoción</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    const emociones = {
+      feliz: "😊",
+      contento: "​😆​​",
+      alegre: "🥳​",
+      triste: "🥺​",
+      enojado: "​🤬​",
+      molesto: "👺​",
+      emocionado: "🤗​",
+      sorprendido: "😱​"
+    };
+
+    function detectarEmocion() {
+      const texto = document.getElementById("frase").value.toLowerCase();
+      let encontrado = false;
+      let resultado = "";
+
+      for (const palabra in emociones) {
+        if (texto.includes(palabra)) {
+          resultado += `${emociones[palabra]} (${palabra})<br>`;
+          encontrado = true;
+        }
+      }
+
+      document.getElementById("resultado").innerHTML = 
+        encontrado ? resultado : "❌ No detecté ninguna emoción.❌";
+    }
+  </script>
+
+</body>
+</html>
